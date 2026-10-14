@@ -1,0 +1,12 @@
+{
+  "name": "ai-workspace",
+  "version": "0.1.0",
+  "description": "複数リポジトリをまとめた親フォルダで、タスクを受け取りから完了まで段階表に沿って進め、作業記録と教訓を ai-docs/ に残す",
+  "author": {
+    "name": "Sina-TehraniFard"
+  },
+  "homepage": "https://github.com/Sina-TehraniFard/ai-workspace",
+  "repository": "https://github.com/Sina-TehraniFard/ai-workspace",
+  "license": "MIT",
+  "keywords": ["workspace", "multi-repo", "task", "ai-docs", "lessons"]
+}

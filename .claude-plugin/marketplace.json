@@ -1,0 +1,16 @@
+{
+  "name": "ai-workspace",
+  "description": "複数リポジトリをまとめた親フォルダで AI がタスクを進めるためのプラグイン",
+  "owner": {
+    "name": "Sina-TehraniFard"
+  },
+  "plugins": [
+    {
+      "name": "ai-workspace",
+      "description": "複数リポジトリをまとめた親フォルダで、タスクを受け取りから完了まで段階表に沿って進め、作業記録と教訓を ai-docs/ に残す",
+      "source": "./",
+      "version": "0.1.0",
+      "category": "productivity"
+    }
+  ]
+}
