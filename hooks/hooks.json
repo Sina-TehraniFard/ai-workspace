@@ -1,0 +1,26 @@
+{
+  "description": "ワークスペースの各リポジトリの skills / commands / agents をリンクし、既定ブランチのままの編集を止める",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/sync-repo-links.sh\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-default-branch.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
