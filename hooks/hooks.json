@@ -1,5 +1,8 @@
 {
-  "description": "ワークスペースの各リポジトリの skills / commands / agents をリンクし、既定ブランチのままの編集を止める",
+  "description": "ワークスペースの各リポジトリの skills / commands / agents をリンクし、既定ブランチのままの編集を止め、進行中のタスクと段階をプロンプトの上に出す",
+  "modules": [
+    "./task-band.tsx"
+  ],
   "hooks": {
     "SessionStart": [
       {

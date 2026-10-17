@@ -52,6 +52,7 @@ workspace/
 | サブエージェント | `domain-advisor` | 変更容易性の観点でのレビュー・設計相談・命名 |
 | フック | `sync-repo-links.sh` | 起動時に、各リポジトリの `.claude/` の skills / commands / agents を親フォルダからリンクする |
 | フック | `guard-default-branch.sh` | 既定ブランチのままの編集を止める |
+| フック | `task-band.tsx` | 進行中のタスクと段階を、プロンプトの上に1行ずつ出す。`ai-docs/INDEX.md` のタスク表と各 `context.md` の「段階」を読む |
 
 フックは `.claude/workspace.md` がある親フォルダでだけ動きます。ほかのプロジェクトでは何もしません。
 
