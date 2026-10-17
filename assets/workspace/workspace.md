@@ -1,6 +1,6 @@
 # {案件名} workspace の設定
 
-案件ごとに違うことだけを書く。進め方は `/ai-workspace:advance-task`、段階は `ai-docs/env/task-workflow.md` が正。
+案件ごとに違うことだけを書く。進め方は `/ai-workspace:run-task`、段階は `ai-docs/env/task-workflow.md` が正。
 
 ## リポジトリ
 | リポジトリ | 役割 | 既定ブランチ | ブランチ名の形式 | 規約の正本 |
