@@ -1,5 +1,5 @@
 ---
-description: "複数リポジトリをまとめた親フォルダを、/ai-workspace:advance-task・/ai-workspace:distill-lesson・ai-docs スキルで扱えるワークスペースとして初期設定する（/ai-workspace:init 明示起動専用）"
+description: "複数リポジトリをまとめた親フォルダを、/ai-workspace:run-task・/ai-workspace:distill-lesson・ai-docs スキルで扱えるワークスペースとして初期設定する。初期設定がまだのときは /ai-workspace:run-task がこの手順を読んで行う。足りない項目の補完に使う（/ai-workspace:init 明示起動専用）"
 argument-hint: "[案件名（省略時は質問する）]"
 allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent"
 disable-model-invocation: true
@@ -59,7 +59,7 @@ Step 2 で根拠が見つからなかった項目だけを、AskUserQuestion で
 
 ## Step 6: 報告
 
-5行以内で、作ったファイル、未確認のまま残した項目、次にやること（起動し直して `/ai-workspace:advance-task` にタスクを貼る）を書く。
+5行以内で、作ったファイル、未確認のまま残した項目、次にやること（起動し直して `/ai-workspace:run-task` を打つ）を書く。
 
 ## エラーハンドリング
 

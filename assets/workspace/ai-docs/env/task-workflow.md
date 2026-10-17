@@ -5,7 +5,7 @@ scope: []
 tags: [workflow, skills, commands]
 updated: {YYYY-MM-DD}
 last_verified: {YYYY-MM-DD}
-summary: タスクを受け取りから完了まで進める段階表。/ai-workspace:advance-task が段階の判定と進行に使う
+summary: タスクを受け取りから完了まで進める段階表。/ai-workspace:run-task が段階の判定と進行に使う
 ---
 
 # タスクの段階表

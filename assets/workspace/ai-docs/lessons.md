@@ -5,7 +5,7 @@ scope: []
 tags: [lessons, feedback, review]
 updated: {YYYY-MM-DD}
 last_verified: {YYYY-MM-DD}
-summary: 指摘から抜き出した教訓のうち、常に読み込む場所へ格上げしていないもの。/ai-workspace:distill-lesson が更新し、/ai-workspace:advance-task の実装・セルフレビューで読む
+summary: 指摘から抜き出した教訓のうち、常に読み込む場所へ格上げしていないもの。/ai-workspace:distill-lesson が更新し、/ai-workspace:run-task の実装・セルフレビューで読む
 ---
 
 # 教訓台帳

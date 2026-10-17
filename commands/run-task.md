@@ -1,12 +1,12 @@
 ---
-description: "ワークスペース（親フォルダに .claude/workspace.md がある、複数リポジトリをまとめた作業場所）のタスクを受け取ってから完了まで管理する。新しいタスクのタイトルや内容が貼られたとき、「タスク進めて」「次は？」「続きやろう」と言われたとき、進行中タスクを再開するときに使う。段階を判定し、各段階のチェック・作業・記録を行い、判断が要る所だけ止まって次の段階へ進む。workspace.md が無い場所では使わない"
+description: "ワークスペース（親フォルダに .claude/workspace.md がある、複数リポジトリをまとめた作業場所）のタスクを受け取ってから完了まで管理する。新しいタスクのタイトルや内容が貼られたとき、「タスク進めて」「次は？」「続きやろう」と言われたとき、進行中タスクを再開するときに使う。段階を判定し、各段階のチェック・作業・記録を行い、判断が要る所だけ止まって次の段階へ進む。workspace.md が無い場所では自動では使わない。/ai-workspace:run-task と打たれたときだけ初期設定から始める"
 argument-hint: "[新しいタスクのタイトルと内容 / 進行中タスクの名前やIssue番号（省略時は進行中タスク）]"
 allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent, Skill"
 ---
 
-# /ai-workspace:advance-task
+# /ai-workspace:run-task
 
-ワークスペースのタスクを、受け取ってから完了（段階表の最後の段階）まで管理する。段階の定義は `ai-docs/env/task-workflow.md`、案件固有の事情は `.claude/workspace.md` だけを正とし、このコマンドには書き写さない。
+ユーザーが打つのはこのコマンドだけ。初期設定がまだならそれを行い、ワークスペースのタスクを、受け取ってから完了（段階表の最後の段階）まで管理する。段階の定義は `ai-docs/env/task-workflow.md`、案件固有の事情は `.claude/workspace.md` だけを正とし、このコマンドには書き写さない。
 
 ## 行動原則
 
@@ -40,6 +40,14 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent, Ski
 - ユーザーから指摘を受けた: `/ai-workspace:distill-lesson` の手順で教訓にする
 - 命名で迷う（ブランチの slug、クラス・関数名）: domain-advisor サブエージェント
 - ユーザーが手順や概念の説明を求めた: `${CLAUDE_PLUGIN_ROOT}/commands/explain-stepwise.md`
+
+## Step 0: 初期設定
+
+`.claude/workspace.md` があれば Step 1 へ進む。無ければ次を行う。
+1. 今いるフォルダが git リポジトリの中なら（`git rev-parse` が成功する）、リポジトリをまとめた親フォルダで起動し直すよう1行で伝えて止める
+2. 直下の git リポジトリ（`ls -d */.git`）を示し、このフォルダをワークスペースとして初期設定してよいかを AskUserQuestion で聞く。断られたら止める
+3. `${CLAUDE_PLUGIN_ROOT}/commands/init.md` を Read し、その手順どおりに初期設定する
+4. Claude Code をこのフォルダで起動し直し、もう一度 `/ai-workspace:run-task` を打つよう伝えて止める。引数でタスクを受け取っていれば、その内容を打ち直す形で示す（リンクと設定は起動時に読まれるため）
 
 ## Step 1: 現状の把握
 
@@ -94,4 +102,3 @@ d. 報告して次の段階へ
 ## エラーハンドリング
 
 - 段階表に無い状況（手順が決まっていない段階）: 推測で手順を作らず、決める必要があることとして AskUserQuestion で聞く
-- `.claude/workspace.md` が無い: ワークスペースの直下で起動しているかを確かめる。直下で無ければ、そこで起動し直すよう1行で伝えて止める。直下なのに無ければ `/ai-workspace:init` を案内して止める
