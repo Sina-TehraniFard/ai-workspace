@@ -1,11 +1,13 @@
 #!/bin/bash
-# ワークスペース直下の各リポジトリの skills / commands / agents を、ワークスペースの .claude/ からリンクで使えるようにする。
+# 親フォルダ型のワークスペース直下の各リポジトリの skills / commands / agents を、ワークスペースの .claude/ からリンクで使えるようにする。
+# 単独型はリポジトリの .claude/ がそのまま使われるので、何もしない。
 # skills はフォルダごとのリンクを Claude Code が認識しないため、1スキルずつリンクする。
 set -euo pipefail
 
 ws_dir="${CLAUDE_PROJECT_DIR:-$PWD}"
 claude_dir="$ws_dir/.claude"
 [ -f "$claude_dir/workspace.md" ] || exit 0
+grep -q '^- 形: 単独' "$claude_dir/workspace.md" && exit 0
 
 mkdir -p "$claude_dir/skills" "$claude_dir/commands" "$claude_dir/agents"
 
