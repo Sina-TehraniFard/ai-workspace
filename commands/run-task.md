@@ -1,5 +1,5 @@
 ---
-description: "ワークスペース（親フォルダに .claude/workspace.md がある、複数リポジトリをまとめた作業場所）のタスクを受け取ってから完了まで管理する。新しいタスクのタイトルや内容が貼られたとき、「タスク進めて」「次は？」「続きやろう」と言われたとき、進行中タスクを再開するときに使う。段階を判定し、各段階のチェック・作業・記録を行い、判断が要る所だけ止まって次の段階へ進む。workspace.md が無い場所では自動では使わない。/ai-workspace:run-task と打たれたときだけ初期設定から始める"
+description: "ワークスペース（.claude/workspace.md がある作業場所。複数リポジトリをまとめた親フォルダか、1つのリポジトリ）のタスクを受け取ってから完了まで管理する。新しいタスクのタイトルや内容が貼られたとき、「タスク進めて」「次は？」「続きやろう」と言われたとき、進行中タスクを再開するときに使う。段階を判定し、各段階のチェック・作業・記録を行い、判断が要る所だけ止まって次の段階へ進む。workspace.md が無い場所では自動では使わない。/ai-workspace:run-task と打たれたときだけ初期設定から始める"
 argument-hint: "[新しいタスクのタイトルと内容 / 進行中タスクの名前やIssue番号（省略時は進行中タスク）]"
 allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent, Skill"
 ---
@@ -44,10 +44,8 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent, Ski
 ## Step 0: 初期設定
 
 `.claude/workspace.md` があれば Step 1 へ進む。無ければ次を行う。
-1. 今いるフォルダが git リポジトリの中なら（`git rev-parse` が成功する）、リポジトリをまとめた親フォルダで起動し直すよう1行で伝えて止める
-2. 直下の git リポジトリ（`ls -d */.git`）を示し、このフォルダをワークスペースとして初期設定してよいかを AskUserQuestion で聞く。断られたら止める
-3. `${CLAUDE_PLUGIN_ROOT}/commands/init.md` を Read し、その手順どおりに初期設定する
-4. Claude Code をこのフォルダで起動し直し、もう一度 `/ai-workspace:run-task` を打つよう伝えて止める。引数でタスクを受け取っていれば、その内容を打ち直す形で示す（リンクと設定は起動時に読まれるため）
+1. `${CLAUDE_PLUGIN_ROOT}/commands/init.md` を Read し、その手順どおりに初期設定する。場所の確認・形の決定・初期設定してよいかの確認は init.md の Step 1 に従う
+2. Claude Code をこのフォルダで起動し直し、もう一度 `/ai-workspace:run-task` を打つよう伝えて止める。引数でタスクを受け取っていれば、その内容を打ち直す形で示す（リンクと設定は起動時に読まれるため）
 
 ## Step 1: 現状の把握
 
