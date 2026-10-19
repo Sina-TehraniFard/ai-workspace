@@ -7,6 +7,7 @@ import {
   recordTypedCommand,
   resetSession,
   runTaskContext,
+  SPEAKING_STYLE,
   startTurn,
   stopReason,
   usedRunbooks,
@@ -36,13 +37,12 @@ export const register: Register = on => {
   on('prompt.submit', async ($, e, next) => {
     if (e.isMeta || e.turnId !== undefined || e.origin.kind === 'task-notification') return next(e)
     startTurn(e.command !== undefined)
-    if (e.command !== undefined) {
-      recordTypedCommand($, e.command.name)
-      return next(e)
-    }
+    if (e.command !== undefined) recordTypedCommand($, e.command.name)
     if ((await workspaceDir($)) === undefined) return next(e)
+    const withStyle = [...(e.context ?? []), SPEAKING_STYLE]
+    if (e.command !== undefined) return next({ ...e, context: withStyle })
     classifyCorrection($, e.text)
-    return next({ ...e, context: [...(e.context ?? []), await runTaskContext($)] })
+    return next({ ...e, context: [...withStyle, await runTaskContext($)] })
   })
 
   on('tool.call', async ($, e, next) => {
