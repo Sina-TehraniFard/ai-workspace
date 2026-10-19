@@ -180,6 +180,8 @@ export function classifyCorrection($: EngineInterface, text: string) {
     .catch(() => false)
 }
 
+export const SPEAKING_STYLE = '技術者にとって平易な言葉で、簡潔に話す。'
+
 export async function runTaskContext($: EngineInterface): Promise<string> {
   if (session.hasSentRunTask) {
     return 'この入力も /ai-workspace:run-task の手順で扱う。手順の本文は、このセッションで前に添えたもの。読むだけの道具以外を使う前に、合う手順書を1つ選んで読む。'
