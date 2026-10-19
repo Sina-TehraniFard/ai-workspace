@@ -1,7 +1,7 @@
 ---
 description: "現在のdiff・指定ファイル・指定内容を、複数の専門家サブエージェントが並列レビューするパネル形式のコードレビュー。観点は指定なしでも動くデフォルトセットを持ち、引数で観点・人数をカスタマイズできる"
 argument-hint: "[対象（省略時は現在のdiff）] [観点や人数の指定（任意）]"
-allowed-tools: "Bash, Read, Glob, Task, AskUserQuestion"
+allowed-tools: "Bash, Read, Glob, Agent, AskUserQuestion"
 ---
 
 # /ai-workspace:review-changes

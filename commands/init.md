@@ -33,7 +33,7 @@ disable-model-invocation: true
 - 規約の正本: `AGENTS.md`、`CLAUDE.md`、`CONTRIBUTING.md`、`.github/PULL_REQUEST_TEMPLATE.md` の有無
 - ブランチ名の形式: 規約の正本に書かれていればそれ。無ければ `gh pr list --state merged --limit 100 --json headRefName` で接頭辞を数え、最多のものと Issue 番号の入れ方を候補にする
 - 品質確認のコマンド: 規約の正本、`Makefile` のターゲット、`package.json` の scripts など
-- 計画書・設計書の置き場: 規約の正本と、`docs` などのフォルダ名
+- 計画書・設計書の置き場: 規約の正本と、`design-docs` `docs` などのフォルダ名
 - リポジトリの道具: `.claude/skills/`、`.claude/commands/`、`.claude/agents/` の一覧
 - 自動で書き換わるファイル: 規約の正本の記述から拾う
 
