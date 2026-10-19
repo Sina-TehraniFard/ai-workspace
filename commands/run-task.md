@@ -15,6 +15,7 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent, Ski
 - 手順・規約・決まりを述べるときは、根拠のファイルと行番号を添える。根拠が無いものは「未確認」と書き、決まりとして扱わない
 - 段階表の段階を飛ばさない。飛ばしたいときはユーザーに確認する
 - ai-docs に書くのは、ユーザーと決めたことと、コード・コマンド結果・原文で確かめた事実だけ。記録するかどうかは自分で判断し、承認を求めずに書いて報告する（`ai-docs` スキルの手順に従う）
+- ワークスペースでは、ユーザーのどの入力もこのコマンドを通る。入力を受けたら、読むだけの道具以外を使う前に、合う手順書を1つ選んで読む。タスクを進める依頼ならこのコマンドを Skill で読み込み、それ以外なら「場面ごとに使う道具」から選ぶ。選ばずに進めると、フックが道具の呼び出しとターンの終わりを止める
 
 ## 止まる所
 
@@ -32,14 +33,16 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent, Ski
 
 ## 場面ごとに使う道具
 
-次の場面では、自己流で進めずに対応する道具を使う。明示起動専用のコマンドは、ファイルを Read してその手順どおりに進める（コミット・push・PR の前は「止まる所」に従う）。
+次の場面では、自己流で進めずに対応する道具を使う。明示起動専用のコマンドは、ファイルを Read してその手順どおりに進める（コミット・push・PR の前は「止まる所」に従う）。ユーザーが打つのはこのコマンドだけなので、次の作業を報告するときは、ここに挙げたコマンドを Claude が使うものとして主語を付けて書き、ユーザーに打たせるコマンドのように書かない。段階表の主語のない記述を写すときも同じ。
 - 不具合が見つかった、期待どおりに動かない: `${CLAUDE_PLUGIN_ROOT}/commands/triage-issue.md`
 - 実装する: `${CLAUDE_PLUGIN_ROOT}/commands/implement.md`
 - セルフレビュー: 段階表に書かれたコマンド（リポジトリが用意した PR レビューのコマンドなど）。書かれていなければ `${CLAUDE_PLUGIN_ROOT}/commands/review-changes.md`
 - 実装とセルフレビューの前: `ai-docs/lessons.md` を読み、当てはまる教訓に従う。使った教訓は「最終参照」を今日にする
+- フックが止める場面: ai-docs を書く前に `ai-docs` スキル、リポジトリのファイルを書く前に implement.md と `ai-docs/lessons.md`、コードを書いた後のコミットの前にセルフレビュー、指摘を受けたターンを終える前に distill-lesson が要る
 - ユーザーから指摘を受けた: `/ai-workspace:distill-lesson` の手順で教訓にする
 - 命名で迷う（ブランチの slug、クラス・関数名）: domain-advisor サブエージェント
 - ユーザーが手順や概念の説明を求めた: `${CLAUDE_PLUGIN_ROOT}/commands/explain-stepwise.md`
+- タスクを進める依頼でも説明の依頼でもない（質問、単発の作業）: `${CLAUDE_PLUGIN_ROOT}/commands/do.md`
 
 ## Step 0: 初期設定
 
