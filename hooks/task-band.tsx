@@ -1,4 +1,4 @@
-import type { EngineInterface, Register } from 'claude-code'
+import type { EngineInterface, On } from 'claude-code'
 
 export type ActiveTask = { title: string; stage: string | undefined }
 
@@ -25,7 +25,7 @@ export function stageOf(context: string): string | undefined {
 
 let tasks: ActiveTask[] = []
 
-async function refresh($: EngineInterface) {
+export async function refreshTaskBand($: EngineInterface) {
   const cwd = await $.session.cwd()
   const indexPath = `${cwd}/ai-docs/INDEX.md`
   if (!(await $.fs.exists(`${cwd}/.claude/workspace.md`)) || !(await $.fs.exists(indexPath))) {
@@ -43,17 +43,7 @@ async function refresh($: EngineInterface) {
   $.ui.invalidate('ui.render')
 }
 
-export const register: Register = on => {
-  on('session.start', async ($, e, next) => {
-    await refresh($)
-    return next(e)
-  })
-
-  on('turn.complete', async ($, e, next) => {
-    if (e.agentId === undefined) await refresh($)
-    return next(e)
-  })
-
+export function registerTaskBand(on: On) {
   on('ui.render', { component: 'AbovePrompt' }, ($, e, next) => {
     if (e.props.hasSurvey || tasks.length === 0) return next(e)
 
