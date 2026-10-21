@@ -1,6 +1,6 @@
 {
   "name": "ai-workspace",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "複数リポジトリをまとめた親フォルダや1つのリポジトリで、タスクを受け取りから完了まで段階表に沿って進め、作業記録と教訓を ai-docs/ に残す",
   "author": {
     "name": "Sina-TehraniFard"
