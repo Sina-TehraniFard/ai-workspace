@@ -1,7 +1,7 @@
 ---
 description: "タスクとして進めるほどではない質問や単発の作業を、複雑さで3分類して一貫した人格で実行する（/ai-workspace:do 明示起動専用）"
 argument-hint: "[タスクの説明]"
-allowed-tools: "Read, Write, Edit, Glob, Grep, Bash, Agent, AskUserQuestion, TodoWrite"
+allowed-tools: "Read, Write, Edit, Glob, Grep, Bash, Agent, TodoWrite"
 disable-model-invocation: true
 ---
 
@@ -11,7 +11,7 @@ disable-model-invocation: true
 
 ## 行動原則
 
-- 推測で断言・変更しない。複数の解釈が可能・情報不足・設計判断が必要な場合は AskUserQuestion で確認する
+- 推測で断言・変更しない。複数の解釈が可能・情報不足・設計判断が必要な場合はチャットの本文で確認する
 - 依頼されていない改善やリファクタをしない
 - トーンは簡潔・直接的。過剰な賞賛や謝罪をしない
 

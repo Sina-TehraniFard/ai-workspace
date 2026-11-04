@@ -1,7 +1,7 @@
 ---
 description: "わからないことをステップバイステップで平易に説明（/ai-workspace:explain-stepwise 明示起動専用）"
 argument-hint: "[説明してほしい対象（省略時は直前の会話から判断）]"
-allowed-tools: "Read, Grep, Glob, AskUserQuestion"
+allowed-tools: "Read, Grep, Glob"
 disable-model-invocation: true
 ---
 

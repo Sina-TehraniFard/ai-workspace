@@ -1,7 +1,7 @@
 ---
 description: "ワークスペース（.claude/workspace.md がある作業場所。複数リポジトリをまとめた親フォルダか、1つのリポジトリ）で受けた指摘（会話中のユーザーの指摘・PR レビューコメント）から教訓を抜き出し、適切な抽象度に直して、既存のナレッジと照合して反映する。会話中にユーザーから指摘・訂正・不満を受けたとき、「指摘をナレッジにして」「PR の指摘を取り込んで」と言われたときに使う。workspace.md が無い場所では使わない"
 argument-hint: "[session（省略時） | pr <番号...> | pr --last <N> | pr --author <名前> | pr --since <YYYY-MM-DD>]"
-allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion"
+allowed-tools: "Read, Grep, Glob, Bash, Edit, Write"
 ---
 
 # /ai-workspace:distill-lesson
@@ -13,7 +13,7 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion"
 - 指摘をそのまま写さない。1件ずつ「場面 → 行動 → 理由」に直す
 - 追加する前に必ず既存と照合する。似たものがあれば、新しく足さずに既存を直す
 - 1件には教訓を1つだけ書く。全文を書き直さず、該当の行だけを変える
-- 推測で補わない。指摘の意図が読み取れないものは AskUserQuestion で聞く
+- 推測で補わない。指摘の意図が読み取れないものはチャットの本文で聞く
 - 書き方は `${CLAUDE_PLUGIN_ROOT}/references/writing-style.md` に従う
 - 記録するかどうかは自分で判断し、承認を求めずに書いて報告する
 
@@ -64,7 +64,7 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion"
 | この案件の進め方・段階の抜け | `ai-docs/env/task-workflow.md` または `.claude/workspace.md` |
 | 案件の事実・仕様・環境 | `ai-docs/context/` または `ai-docs/env/`（`ai-docs` スキルの規約） |
 | 決めた方針 | `ai-docs/decisions/` |
-| 案件に限らない、ユーザーの好み・進め方 | `~/.claude/CLAUDE.md` に足す案を AskUserQuestion で出す（全プロジェクトに効くため。下の「共通の場所に書くとき」に従う） |
+| 案件に限らない、ユーザーの好み・進め方 | `~/.claude/CLAUDE.md` に足す案をチャットの本文で出す（全プロジェクトに効くため。下の「共通の場所に書くとき」に従う） |
 | リポジトリのチーム規約（コードの書き方等） | 規約ファイルへの追記案を示すだけにする（変更には PR が要る）。台帳には載せる |
 | 上のどれにも当てはまらない | `ai-docs/lessons.md`（教訓台帳） |
 
@@ -91,6 +91,6 @@ allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion"
 
 ## エラーハンドリング
 
-- 指摘の意図が読み取れない: 推測で教訓にせず、AskUserQuestion で聞く
+- 指摘の意図が読み取れない: 推測で教訓にせず、チャットの本文で聞く
 - `gh` が認証エラー: `! gh auth login` を打つよう1行で伝えて止める
 - 対象の PR にレビューコメントが無い: その旨を1行で報告して終わる
