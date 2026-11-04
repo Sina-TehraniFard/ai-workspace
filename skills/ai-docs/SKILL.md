@@ -70,7 +70,7 @@ summary: 1行要約（INDEX にそのまま転記できる文）
 ## 手順
 1. `ai-docs/INDEX.md` と `.claude/workspace.md` を Read（このセッションで読済みなら省略）
 2. `grep -rn` で関連する既存の記述を探す。食い違いがあれば根拠でどちらが正しいかを示し、確かめられないものは候補から外す
-3. 根拠で決められない食い違い（どちらが正しいか分からない）があるときだけ、AskUserQuestion で聞く
+3. 根拠で決められない食い違い（どちらが正しいか分からない）があるときだけ、チャットの本文で聞く
 4. 書く。frontmatter を埋め、`updated`（事実系は `last_verified` も）を今日の日付にする
 5. 新規ファイル・タスク状態の変化は `INDEX.md` に反映する（タスクは「タスク」表へ。status 列は context.md の status と同じ値）
 6. タスク完了時: `status: 完了` → `tasks/_archive/` へ mv → INDEX のタスク表から外す → 恒久的な知見を context/env/decisions へ昇格

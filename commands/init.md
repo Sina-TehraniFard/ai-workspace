@@ -1,7 +1,7 @@
 ---
 description: "複数リポジトリをまとめた親フォルダ、または1つのリポジトリを、/ai-workspace:run-task・/ai-workspace:distill-lesson・ai-docs スキルで扱えるワークスペースとして初期設定する。初期設定がまだのときは /ai-workspace:run-task がこの手順を読んで行う。足りない項目の補完に使う（/ai-workspace:init 明示起動専用）"
 argument-hint: "[案件名（省略時は質問する）]"
-allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, AskUserQuestion, Agent"
+allowed-tools: "Read, Grep, Glob, Bash, Edit, Write, Agent"
 disable-model-invocation: true
 ---
 
@@ -19,7 +19,7 @@ disable-model-invocation: true
 
 ## Step 1: 場所の確認と形の決定
 
-- `.claude/workspace.md` が既にあれば、初期設定済みと伝え、足りない項目の補完だけを行うかを AskUserQuestion で聞く
+- `.claude/workspace.md` が既にあれば、初期設定済みと伝え、足りない項目の補完だけを行うかをチャットの本文で聞く
 - 形を `git rev-parse --show-toplevel` の結果で決める。決めた形は Step 4 で workspace.md の「形」に書く
   - 失敗する（git リポジトリの外）: 直下に git リポジトリ（`ls -d */.git`）が1つ以上あれば親フォルダ型。無ければ、リポジトリか、リポジトリをまとめたフォルダで起動し直すよう1行で伝えて止める
   - 今のフォルダを返す（リポジトリの最上位）: 単独型の候補。親フォルダ型のワークスペースの中で、リポジトリを開いてしまった場合と区別できないため、Step 3 の質問で単独型で使うかを聞く。断られたら、親フォルダで起動し直すよう1行で伝えて止める
@@ -39,7 +39,7 @@ disable-model-invocation: true
 
 ## Step 3: 足りないことを聞く
 
-Step 1 の確認と、Step 2 で根拠が見つからなかった項目だけを、AskUserQuestion で1回に4問までにまとめて聞く。候補が調べて出ていれば、その候補を選択肢の先頭に置く。
+Step 1 の確認と、Step 2 で根拠が見つからなかった項目だけを、チャットの本文で1回にまとめて聞く。候補が調べて出ていれば、その候補を選択肢の先頭に置く。
 - Step 1 の確認（単独型で使うか、または親フォルダ型で初期設定してよいか）
 - 案件名（引数が無いとき）
 - チケットの所在と表記（GitHub Issue / Notion / その他）
@@ -49,7 +49,7 @@ Step 1 の確認と、Step 2 で根拠が見つからなかった項目だけを
 ## Step 4: 作る
 
 `${CLAUDE_PLUGIN_ROOT}/assets/workspace/` のひな形を写し、`{...}` を Step 2・3 の結果で埋める。埋められない欄は「未確認」と書く。
-- `.claude/CLAUDE.md`: 親フォルダ型で、既に親フォルダに `CLAUDE.md` があれば、その中身を `.claude/CLAUDE.md` に統合し、元のファイルを消すかを AskUserQuestion で聞く。単独型ではリポジトリ直下の `CLAUDE.md` に触れない。既に `.claude/CLAUDE.md` があれば、ひな形の見出しのうち無いものだけを足す
+- `.claude/CLAUDE.md`: 親フォルダ型で、既に親フォルダに `CLAUDE.md` があれば、その中身を `.claude/CLAUDE.md` に統合し、元のファイルを消すかをチャットの本文で聞く。単独型ではリポジトリ直下の `CLAUDE.md` に触れない。既に `.claude/CLAUDE.md` があれば、ひな形の見出しのうち無いものだけを足す
 - `.claude/workspace.md`: 「形」に Step 1 で決めた形（親フォルダ / 単独）を書く
 - `ai-docs/INDEX.md`、`ai-docs/lessons.md`、`ai-docs/env/task-workflow.md`
 - 空のフォルダ `ai-docs/context/`、`ai-docs/decisions/`、`ai-docs/tasks/`、`ai-docs/inbox/`
