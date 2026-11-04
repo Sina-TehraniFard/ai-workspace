@@ -30,6 +30,7 @@ disable-model-invocation: true
 - **技術者にとって平易な言葉で報告してください**（専門用語には説明を添え、難しい概念は具体例で補う）
 - **図の活用を惜しまないでください**（因果関係・状態遷移・依存関係などは図で可視化する。チャットでは ASCII アート、Artifact では Mermaid を使う）
 - これはチャットでの報告・Artifactでの出力の両方に適用します
+- 質問は `${CLAUDE_PLUGIN_ROOT}/references/writing-style.md` の「チャットの本文で聞くとき」の形で書きます
 
 ---
 
