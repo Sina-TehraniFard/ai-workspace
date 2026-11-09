@@ -168,7 +168,7 @@ export function recordTypedCommand($: EngineInterface, command: string) {
   if (isReviewSkill(command)) session.read.add('review-changes')
 }
 
-const CORRECTION_PROMPT = `次の発言は、直前の AI の作業や回答に対する指摘・訂正・不満ですか。yes か no だけで答えてください。
+const CORRECTION_PROMPT = `次の発言は、直前の AI の作業や回答に対する指摘・訂正・不満ですか。進め方が遅い・止まりすぎるといった催促や苛立ち、「なんで」「また」で始まる問い詰めも含みます。yes か no だけで答えてください。
 
 発言:
 `
@@ -180,7 +180,7 @@ export function classifyCorrection($: EngineInterface, text: string) {
     .catch(() => false)
 }
 
-export const SPEAKING_STYLE = '技術者にとって平易な言葉で、簡潔に話す。'
+export const SPEAKING_STYLE = '日本語で、技術者にとって平易な言葉で、簡潔に話す。'
 
 export async function runTaskContext($: EngineInterface): Promise<string> {
   if (session.hasSentRunTask) {
