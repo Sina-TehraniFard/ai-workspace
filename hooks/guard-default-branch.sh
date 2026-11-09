@@ -27,6 +27,9 @@ for repo_dir in ${repo_dirs[@]+"${repo_dirs[@]}"}; do
     *) continue ;;
   esac
 
+  # 最初のコミットがまだ無いリポジトリは、作業ブランチを切る元が無いので止めない
+  git -C "$repo_dir" rev-parse --verify --quiet HEAD >/dev/null || continue
+
   branch="$(git -C "$repo_dir" branch --show-current)"
   default="$(git -C "$repo_dir" symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null || true)"
   default="${default#origin/}"
