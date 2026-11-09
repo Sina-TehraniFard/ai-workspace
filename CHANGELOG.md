@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/Sina-TehraniFard/ai-workspace/compare/v0.4.0...v0.5.0) (2026-11-09)
+
+
+### Features
+
+* 過去のセッションの指摘を手順書とフックに反映する ([#9](https://github.com/Sina-TehraniFard/ai-workspace/issues/9)) ([5df8918](https://github.com/Sina-TehraniFard/ai-workspace/commit/5df891870eb02016e5cd6999f438bb02d851a8b6))
+
 ## [0.4.0](https://github.com/Sina-TehraniFard/ai-workspace/compare/v0.3.0...v0.4.0) (2026-11-04)
 
 
