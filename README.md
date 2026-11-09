@@ -11,6 +11,17 @@ Claude Code がタスクを受け取ってから完了まで進めるプラグ�
 /plugin install ai-workspace@ai-workspace
 ```
 
+## 最新にする
+
+新しい版が出たら、各 PC のターミナルで次の2行を実行し、Claude Code を起動し直します。
+
+```
+claude plugin marketplace update ai-workspace
+claude plugin update ai-workspace@ai-workspace
+```
+
+`~/.claude/plugins/cache/` の中のファイルは書き換えないでください。次の更新で上書きされます。また、どの版が入っているかが分からなくなります。直したいときは、このリポジトリに PR を出します。
+
 ## 使い方
 
 使うのは `/ai-workspace:run-task` だけです。
